@@ -2,6 +2,7 @@ package com.example.thirdday;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -47,6 +48,7 @@ public class GameItem extends View {
         mRect = new Rect();
         mPaint.getTextBounds(numberValues,0,numberValues.length(),mRect);
 
+        invalidate();
     }
 
     @Override
@@ -70,11 +72,21 @@ public class GameItem extends View {
                 break;
             case 256:
                 break;
-            
-
-
 
         }
+
+        mPaint.setColor(Color.parseColor(numberColor));
+        mPaint.setStyle(Paint.Style.FILL);
+
+        canvas.drawRect(0,0,getWidth(),getHeight(),mPaint);
+        if (number!=0){
+            mPaint.setColor(Color.BLACK);
+            float x = 10f;
+            float y = 10f;
+            canvas.drawRect(0,0,x,y,mPaint);
+        }
+
+
 
     }
 }
